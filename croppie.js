@@ -1428,14 +1428,15 @@
 
         self.data.orientation = getExifOffset(self.data.orientation, deg);
         drawCanvas(canvas, self.elements.img, self.data.orientation);
-        _updateCenterPoint.call(self, true);
-        _updateZoomLimits.call(self);
 
         // Reverses image dimensions:
         var oldHeight = self._originalImageHeight;
         var oldWidth = self._originalImageWidth;
         self._originalImageWidth = oldHeight;
         self._originalImageHeight = oldWidth;
+
+        _updateCenterPoint.call(self, true);
+        _updateZoomLimits.call(self);        
     }
 
     function _destroy() {
