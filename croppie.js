@@ -637,7 +637,7 @@
             var delta, targetZoom;
 
             if(self.options.mouseWheelZoom === 'ctrl' && ev.ctrlKey !== true){
-              return 0; 
+              return 0;
             } else if (ev.wheelDelta) {
                 delta = ev.wheelDelta / 1200; //wheelDelta min: -120 max: 120 // max x 10 x 2
             } else if (ev.deltaY) {
@@ -1182,7 +1182,7 @@
             width = Math.min(width, self._originalImageWidth);
             height = Math.min(height, self._originalImageHeight);
         }
-    
+
         // console.table({ left, right, top, bottom, canvasWidth, canvasHeight });
         ctx.drawImage(this.elements.preview, left, top, width, height, startX, startY, canvasWidth, canvasHeight);
         if (circle) {
@@ -1430,6 +1430,12 @@
         drawCanvas(canvas, self.elements.img, self.data.orientation);
         _updateCenterPoint.call(self, true);
         _updateZoomLimits.call(self);
+
+        // Reverses image dimensions:
+        var oldHeight = self._originalImageHeight;
+        var oldWidth = self._originalImageWidth;
+        self._originalImageWidth = oldHeight;
+        self._originalImageHeight = oldWidth;
     }
 
     function _destroy() {
